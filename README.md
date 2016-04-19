@@ -3,4 +3,4 @@
 
 ## Development
 If you wish to run the app in your local browser, execute
-``ìonic serve``
+```ionic serve```

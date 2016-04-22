@@ -14,7 +14,7 @@ TODO: Write usage instructions
 ## History
 TODO: Write history
 ## Credits
-Using Transportation API: [https://transport.opendata.ch/]
+Using Transportation API: https://transport.opendata.ch/
 
 ## License
 TODO: Write license

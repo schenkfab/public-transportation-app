@@ -1,5 +1,5 @@
-# ${1:Project Name}
-TODO: Write a project description
+# Switzerland Public Transportation App
+Udacity Project 2 - Senior Web Developer
 ## Installation
 TODO: Describe the installation process
 ## Usage
@@ -14,6 +14,7 @@ TODO: Write usage instructions
 ## History
 TODO: Write history
 ## Credits
-TODO: Write credits
+Using Transportation API: [https://transport.opendata.ch/]
+
 ## License
 TODO: Write license

@@ -2,12 +2,12 @@
 	<ion-content>
 		<div class="list">
 			<label for="from" class="item item-input">
-				<input placeholder="From" type='text' id='from' type="text">
+				<input ion-autocomplete class='ion-autocomplete' item-value-key='id' item-view-value-key='name' items-method-value-key='stations' autocomplete="off" ng-model='from' items-method="autocompleteStation(query)" placeholder="From" type='text' id='from' type="text" max-selected-items="1" items-removed-method='setFromMethod(callback)' items-clicked-method='setFromMethod(callback)'>
 			</label>
 			<label for="to" class="item item-input">
-				<input placeholder="To" type='text' id='to' type="text">
+				<input ion-autocomplete class='ion-autocomplete' item-value-key='id' item-view-value-key='name' items-method-value-key='stations' autocomplete="off" ng-model='to' items-method="autocompleteStation(query)" placeholder="To" type='text' id='to' type="text" max-selected-items="1" items-removed-method='setToMethod(callback)' items-clicked-method='setToMethod(callback)'>
 			</label>
-			<button class="button button-block button-positive">Search</button>
+			<button class="button button-block button-positive" ng-click='search()'>Search</button>
 		</div>
 	</ion-content>
 </ion-view>

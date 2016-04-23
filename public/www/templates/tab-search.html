@@ -7,7 +7,16 @@
 			<label for="to" class="item item-input">
 				<input ion-autocomplete class='ion-autocomplete' item-value-key='id' item-view-value-key='name' items-method-value-key='stations' autocomplete="off" ng-model='to' items-method="autocompleteStation(query)" placeholder="To" type='text' id='to' type="text" max-selected-items="1" items-removed-method='setToMethod(callback)' items-clicked-method='setToMethod(callback)'>
 			</label>
+			<label class="item item-input">
+			  <span class="input-label">Date</span>
+			  <input type="datetime-local">
+			</label>
 			<button class="button button-block button-positive" ng-click='search()'>Search</button>
 		</div>
+			<ion-list>
+			  <ion-item ng-repeat="connection in connections">
+			    {{connection}}!
+			  </ion-item>
+			</ion-list>
 	</ion-content>
 </ion-view>

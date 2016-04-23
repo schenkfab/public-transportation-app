@@ -16,7 +16,10 @@ angular.module('starter.controllers', [])
 		$http.get('http://transport.opendata.ch/v1/connections', {
 			params: {'from': $scope.from.id, 'to': $scope.to.id}
 		}).then(function successCallback(response) {
-		    console.log(response);
+		    console.log(response.data.connections);
+
+		    $scope.connections = response.data.connections;
+
 		}, function errorCallback(response) {
 			console.log(response);
 		});

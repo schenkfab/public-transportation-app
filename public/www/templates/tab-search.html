@@ -9,13 +9,23 @@
 			</label>
 			<label class="item item-input">
 			  <span class="input-label">Date</span>
-			  <input type="datetime-local">
+			  <input type="datetime-local" ng-model='args.depDate'>
 			</label>
 			<button class="button button-block button-positive" ng-click='search()'>Search</button>
 		</div>
 			<ion-list>
 			  <ion-item ng-repeat="connection in connections">
-			    {{connection}}!
+			    {{connection.from.departure | date: 'short'}} - 
+			    {{connection.to.arrival | date: 'short'}}
+				<span class="item-note">
+					Umsteigen: {{connection.sections.length - 1}}
+				</span>
+
+			    <br>
+			    <span class="item-note" ng-repeat-start="section in connection.sections">
+      				{{section.departure.location.name}} - {{section.arrival.location.name}} 
+    			</span>
+    			<br ng-repeat-end>
 			  </ion-item>
 			</ion-list>
 	</ion-content>

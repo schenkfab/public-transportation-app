@@ -4,6 +4,9 @@ angular.module('starter.controllers', [])
 	$scope.from = '';
 	$scope.to = '';
 
+	$scope.args = {
+		depDate: (new Date())
+	};
 
 	$scope.autocompleteStation = function(query) {
 		return $http.get('http://transport.opendata.ch/v1/locations', {
@@ -12,11 +15,16 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.search = function () {
+
+		console.log($scope.args);
+
 		// Get connections from transport.opendata.ch
 		$http.get('http://transport.opendata.ch/v1/connections', {
 			params: {'from': $scope.from.id, 'to': $scope.to.id}
 		}).then(function successCallback(response) {
 		    console.log(response.data.connections);
+
+
 
 		    $scope.connections = response.data.connections;
 

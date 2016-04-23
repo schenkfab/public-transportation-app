@@ -12,8 +12,16 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.search = function () {
-		console.log($scope.from);
-		console.log($scope.to);
+		// Get connections from transport.opendata.ch
+		$http.get('http://transport.opendata.ch/v1/connections', {
+			params: {'from': $scope.from.id, 'to': $scope.to.id}
+		}).then(function successCallback(response) {
+		    console.log(response);
+		}, function errorCallback(response) {
+			console.log(response);
+		});
+
+
 	}
 
 	$scope.setFromMethod = function (callback) {

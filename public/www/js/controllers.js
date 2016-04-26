@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SearchCtrl', function($scope, $http){
+.controller('SearchCtrl', function($scope, $http, Train){
 	$scope.from = '';
 	$scope.to = '';
 
@@ -15,24 +15,36 @@ angular.module('starter.controllers', [])
 	}
 
 	$scope.search = function () {
+		// Create the date and time parameters
+		// date	Date of the connection, in the format YYYY-MM-DD	2012-03-25
+		// time	Time of the connection, in the format hh:mm			17:30
+		var d = new Date($scope.args.depDate);
+		var date = d.getUTCFullYear() + '-' + d.getUTCMonth() + '-' + d.getDate();
+		var time = '';
+		if (d.getMinutes() < 10) {
+			time = d.getHours() + ':0' + d.getMinutes();
+		} else {
+			time = d.getHours() + ':' + d.getMinutes();
+		}
 
-		console.log($scope.args);
 
 		// Get connections from transport.opendata.ch
 		$http.get('http://transport.opendata.ch/v1/connections', {
-			params: {'from': $scope.from.id, 'to': $scope.to.id}
+			params: {
+				'from': $scope.from.id, 
+				'to': $scope.to.id,
+				'date': date,
+				'time': time
+			}
 		}).then(function successCallback(response) {
-		    console.log(response.data.connections);
-
-
-
+			Train.set(response.data.connections);
 		    $scope.connections = response.data.connections;
+
+		    console.log(response.data.connections);
 
 		}, function errorCallback(response) {
 			console.log(response);
 		});
-
-
 	}
 
 	$scope.setFromMethod = function (callback) {
@@ -46,7 +58,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('SearchDetailCtrl', function($scope, $stateParams, Train) {
-  $scope.search = Train.get($stateParams.searchId);
+	$scope.connection = Train.get($stateParams.searchId);
 })
 
 .controller('HistoryCtrl', function($scope){

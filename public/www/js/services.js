@@ -2,9 +2,20 @@ angular.module('starter.services', [])
 
 
   .service('Train', function() {
-	this.myTrain = function() {
-		console.log('test');
-	}
+
+  	var connections = '';
+
+  	this.set = function (c) {
+  		connections = c;
+  	}
+
+  	this.getConnections = function () {
+  		return connections;
+  	}
+
+  	this.get = function(i) {
+  		return connections[i];
+  	}
   })
 
 

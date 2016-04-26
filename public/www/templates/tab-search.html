@@ -14,17 +14,18 @@
 			<button class="button button-block button-positive" ng-click='search()'>Search</button>
 		</div>
 			<ion-list>
-			  <ion-item ng-repeat="connection in connections">
-			    {{connection.from.departure | date: 'short'}} - 
-			    {{connection.to.arrival | date: 'short'}}
-				<span class="item-note">
-					Umsteigen: {{connection.sections.length - 1}}
-				</span>
-
+			  <ion-item ng-repeat="connection in connections"
+			  	href='#/tab/search/{{$index}}'>
+			    Start: {{connection.from.departure | date: 'short'}}
 			    <br>
+			    Finish: {{connection.to.arrival | date: 'short'}}
+			    <span class='item-note'>
+				Stations: {{connection.sections.length - 1}}
+				</span>
+			    <!--<br>
 			    <span class="item-note" ng-repeat-start="section in connection.sections">
       				{{section.departure.location.name}} - {{section.arrival.location.name}} 
-    			</span>
+    			</span>-->
     			<br ng-repeat-end>
 			  </ion-item>
 			</ion-list>

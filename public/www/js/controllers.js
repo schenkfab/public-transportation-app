@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SearchCtrl', function($scope, $http, Train, Cache){
+.controller('SearchCtrl', function ($scope, $http, Train, Cache){
 	$scope.from = '';
 	$scope.to = '';
 	$scope.args = {
@@ -11,7 +11,7 @@ angular.module('starter.controllers', [])
 		return $http.get('http://transport.opendata.ch/v1/locations', {
 			params: {'query': query, 'type': 'station'}
 		});
-	}
+	};
 
 	$scope.search = function () {
 		// Create the date and time parameters
@@ -35,32 +35,30 @@ angular.module('starter.controllers', [])
 			}
 		}).then(function successCallback(response) {
 			Train.set(response.data.connections);
-		    $scope.connections = response.data.connections;
-		    Cache.addHistory(response.data);
-		    console.log(Cache.getHistory());
-
+			$scope.connections = response.data.connections;
+			Cache.addHistory(response.data);
 		}, function errorCallback(response) {
 			console.log(response);
 		});
-	}
+	};
 
 	$scope.setFromMethod = function (callback) {
-	    $scope.from = callback.selectedItems; 
-	}
+		$scope.from = callback.selectedItems; 
+	};
 
 	$scope.setToMethod = function (callback) {
-	    $scope.to = callback.selectedItems; 
-	}
+		$scope.to = callback.selectedItems; 
+	};
 
 })
 
-.controller('SearchDetailCtrl', function($scope, $stateParams, Train) {
+.controller('SearchDetailCtrl', function ($scope, $stateParams, Train) {
 	$scope.connection = Train.get($stateParams.searchId);
 })
 
-.controller('HistoryCtrl', function($scope, Cache){
-  	$scope.connections = Cache.getHistory();
-  	console.log($scope.connections);
+.controller('HistoryCtrl', function ($scope, Cache){
+	$scope.connections = Cache.getHistory();
+	console.log($scope.connections);
 })
 
 .controller('HistoryDetailCtrl', function ($scope, $stateParams, Train, Cache, $http) {
@@ -76,7 +74,7 @@ angular.module('starter.controllers', [])
 		return $http.get('http://transport.opendata.ch/v1/locations', {
 			params: {'query': query, 'type': 'station'}
 		});
-	}
+	};
 
 	$scope.search = function () {
 		console.log($scope.args);
@@ -104,12 +102,12 @@ angular.module('starter.controllers', [])
 		.then(function successCallback(response) {
 			console.log(response);
 			Train.set(response.data.connections);
-		    $scope.connections = response.data.connections;
+			$scope.connections = response.data.connections;
 		}, function errorCallback(response) {
 			console.log(response);
 		});
-	}
+	};
 })
 
-.controller('SettingsCtrl', function($scope) {
+.controller('SettingsCtrl', function ($scope) {
 });

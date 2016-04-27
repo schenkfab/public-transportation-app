@@ -1,7 +1,13 @@
 # Switzerland Public Transportation App
 Udacity Project 2 - Senior Web Developer
 ## Installation
-TODO: Describe the installation process
+
+0. Get OSX
+1. Install Ionic `npm install -g cordova ionic`
+2. Add Platform: `ionic platform add ios`
+3. Build: `ionic build ios`
+4. Emulate: `ionic emulate ios`
+
 ## Usage
 TODO: Write usage instructions
 ## Contributing

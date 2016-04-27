@@ -1,0 +1,33 @@
+<ion-view view-title="Public Transportation">
+	<ion-content>
+		<div class="list">
+			<label for="from" class="item item-input">
+				<input ion-autocomplete class='ion-autocomplete' item-value-key='id' item-view-value-key='name' items-method-value-key='stations' autocomplete="off" ng-model='args.from' items-method="autocompleteStation(query)" placeholder="From" type='text' id='from' type="text" max-selected-items="1" items-removed-method='setFromMethod(callback)' items-clicked-method='setFromMethod(callback)'>
+			</label>
+			<label for="to" class="item item-input">
+				<input ion-autocomplete class='ion-autocomplete' item-value-key='id' item-view-value-key='name' items-method-value-key='stations' autocomplete="off" ng-model='args.to' items-method="autocompleteStation(query)" placeholder="To" type='text' id='to' type="text" max-selected-items="1" items-removed-method='setToMethod(callback)' items-clicked-method='setToMethod(callback)'>
+			</label>
+			<label class="item item-input">
+			  <span class="input-label">Date</span>
+			  <input type="datetime-local" ng-model='args.depDate'>
+			</label>
+			<button class="button button-block button-positive" ng-click='search()'>Search</button>
+		</div>
+			<ion-list>
+			  <ion-item ng-repeat="connection in connections"
+			  	href='#/tab/searchDetail/{{$index}}'>
+			    Start: {{connection.from.departure | date: 'short'}}
+			    <br>
+			    Finish: {{connection.to.arrival | date: 'short'}}
+			    <span class='item-note'>
+				Stations: {{connection.sections.length - 1}}
+				</span>
+			    <!--<br>
+			    <span class="item-note" ng-repeat-start="section in connection.sections">
+      				{{section.departure.location.name}} - {{section.arrival.location.name}} 
+    			</span>-->
+    			<br ng-repeat-end>
+			  </ion-item>
+			</ion-list>
+	</ion-content>
+</ion-view>

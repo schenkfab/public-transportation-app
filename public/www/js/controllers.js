@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SearchCtrl', function($scope, $http, Train){
+.controller('SearchCtrl', function($scope, $http, Train, Cache){
 	$scope.from = '';
 	$scope.to = '';
 
@@ -39,8 +39,8 @@ angular.module('starter.controllers', [])
 		}).then(function successCallback(response) {
 			Train.set(response.data.connections);
 		    $scope.connections = response.data.connections;
-
-		    console.log(response.data.connections);
+		    Cache.addHistory(response.data);
+		    console.log(Cache.getHistory());
 
 		}, function errorCallback(response) {
 			console.log(response);
@@ -61,8 +61,9 @@ angular.module('starter.controllers', [])
 	$scope.connection = Train.get($stateParams.searchId);
 })
 
-.controller('HistoryCtrl', function($scope){
-  
+.controller('HistoryCtrl', function($scope, Cache){
+  	$scope.connections = Cache.getHistory();
+  	console.log($scope.connections);
 })
 
 .controller('SettingsCtrl', function($scope) {

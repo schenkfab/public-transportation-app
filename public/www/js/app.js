@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ion-autocomplete'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ion-autocomplete', 'ngStorage'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -51,11 +51,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   .state('tab.search-detail', {
-      url: '/search/:searchId',
+      url: '/searchDetail/:searchId',
       views: {
         'tab-search': {
           templateUrl: 'templates/search-detail.html',
           controller: 'SearchDetailCtrl'
+        }
+      }
+    })
+
+  .state('tab.history-detail', {
+      url: '/historyDetail/:historyId',
+      views: {
+        'tab-history': {
+          templateUrl: 'templates/history-detail.html',
+          controller: 'HistoryDetailCtrl'
         }
       }
     })

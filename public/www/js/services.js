@@ -1,24 +1,32 @@
 angular.module('starter.services', [])
+	.service('Train', function() {
+	  	var connections = '';
+	  	this.set = function (c) {
+	  		connections = c;
+	  	}
 
+	  	this.getConnections = function () {
+	  		return connections;
+	  	}
 
-  .service('Train', function() {
+	  	this.get = function(i) {
+	  		return connections[i];
+	  	}
+	  })
 
-  	var connections = '';
+	.service('Cache', function($localStorage) {
+		$localStorage = $localStorage.$default({
+		  history: []
+		});
 
-  	this.set = function (c) {
-  		connections = c;
-  	}
+		this.addHistory = function(value) {
+			$localStorage.history.push(value);
+		}
 
-  	this.getConnections = function () {
-  		return connections;
-  	}
-
-  	this.get = function(i) {
-  		return connections[i];
-  	}
-  })
-
-
+		this.getHistory = function() {
+			return $localStorage.history;
+		}
+	})
 
 
 
